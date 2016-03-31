@@ -1,51 +1,67 @@
 package net.elbandi.pve2api.data.storage;
 
-import java.util.EnumSet;
+import net.elbandi.pve2api.Pve2Api.PveParams;
+import net.elbandi.pve2api.data.Storage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.elbandi.pve2api.Pve2Api.PveParams;
-import net.elbandi.pve2api.data.Storage;
+import java.util.EnumSet;
+
 
 public class Dir extends Storage {
-	private String path;
-	int maxfiles;
 
-	public Dir(JSONObject data) throws JSONException {
-		super(data);
-		path = data.getString("path");
-		maxfiles = data.getInt("maxfiles");
-	}
+    private String path;
+    int maxfiles;
 
-	// for create
-	public Dir(String storage, EnumSet<Content> content, String nodes, boolean shared,
-			boolean disable, String path, int maxfiles) {
-		super(storage, content, nodes, shared, disable);
-		this.path = path;
-		this.maxfiles = maxfiles;
-	}
+    public Dir(JSONObject data) throws JSONException {
 
-	// for update
-	public Dir(String storage, String digest, EnumSet<Content> content, String nodes,
-			boolean shared, boolean disable, int maxfiles) {
-		super(storage, digest, content, nodes, shared, disable);
-		this.maxfiles = maxfiles;
-	}
+        super(data);
+        path = data.getString("path");
+        maxfiles = data.getInt("maxfiles");
+    }
 
-	public String getPath() {
-		return path;
-	}
 
-	public int getMaxfiles() {
-		return maxfiles;
-	}
+    // for create
+    public Dir(String storage, EnumSet<Content> content, String nodes, boolean shared, boolean disable, String path,
+        int maxfiles) {
 
-	public PveParams getCreateParams() {
-		return super.getCreateParams().Add("type", "dir").Add("path", path).Add("maxfiles", maxfiles);
-	}
+        super(storage, content, nodes, shared, disable);
+        this.path = path;
+        this.maxfiles = maxfiles;
+    }
 
-	public PveParams getUpdateParams() {
-		return super.getUpdateParams().Add("maxfiles", maxfiles);
-	}
+
+    // for update
+    public Dir(String storage, String digest, EnumSet<Content> content, String nodes, boolean shared, boolean disable,
+        int maxfiles) {
+
+        super(storage, digest, content, nodes, shared, disable);
+        this.maxfiles = maxfiles;
+    }
+
+    public String getPath() {
+
+        return path;
+    }
+
+
+    public int getMaxfiles() {
+
+        return maxfiles;
+    }
+
+
+    @Override
+    public PveParams getCreateParams() {
+
+        return super.getCreateParams().add("type", "dir").add("path", path).add("maxfiles", maxfiles);
+    }
+
+
+    @Override
+    public PveParams getUpdateParams() {
+
+        return super.getUpdateParams().add("maxfiles", maxfiles);
+    }
 }

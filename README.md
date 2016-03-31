@@ -1,7 +1,16 @@
 pve2-api-java
 =============
 
-Proxmox 2.0 API Client for Java
+Proxmox API Client for Java
 
+*Will be upgraded to work for Proxmox 4.0, features that we don't need will be removed for simplicity*.
 
-*Some things are broken right now, another are going to get broken. But the rest of the code must be working.*
+Planned features:
+
+* Getting VMs with their Disks and Network Interfaces
+* Creating new VMs
+* Deleting VMs
+* Starting (normal or network boot) and Stopping of VMs
+* Changing the IP and MAC Address of Network Interfaces
+* Changing the core characteristics of VMs (CPU, RAM, HDD size...)
+* Maybe more...
